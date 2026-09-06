@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Hello World</title>
+    <!-- Force every shadow root open so MarketOverview.tsx can inject CSS into the
+         tv-market-overview widget (its base class uses mode:"closed"). Must run
+         before the widget script below. -->
+    <script>
+      (function () {
+        var orig = Element.prototype.attachShadow
+        Element.prototype.attachShadow = function (init) {
+          return orig.call(this, Object.assign({}, init, { mode: 'open' }))
+        }
+      })()
+    </script>
+    <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-market-overview.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
