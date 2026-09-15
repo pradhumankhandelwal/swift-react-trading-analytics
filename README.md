@@ -5,17 +5,14 @@ A native Swift iOS app that renders a React web application inside a `WKWebView`
 The React build is bundled into the app, so it runs offline, and a small two-way bridge
 lets the web page call into Swift and receive a reply.
 
-## Setup
+## Run
 
 ```sh
-brew install xcodegen   # once
-make run                # build the web app, generate the project, launch the simulator
+make run
 ```
 
-`make run` builds `web/`, copies the output into `ios/Resources/web/`, runs
-`xcodegen generate` to produce `TradingAnalytics.xcodeproj`, builds the app, then boots a
-simulator and installs it. The Xcode project and the copied web assets are generated
-artifacts and are gitignored — `project.yml` is the source of truth.
+`make run` builds `web/`, copies the output into `ios/Resources/web/`, builds the app,
+then boots a simulator and installs it.
 
 ## Layout
 
@@ -100,8 +97,8 @@ localhost. It ships in Release too, which is harmless — `DEV_SERVER_URL` is re
 | Target | What it does |
 | --- | --- |
 | `make web-build` | Build the React app and copy it into the app resources |
-| `make gen` | The above, then `xcodegen generate` |
-| `make build` | Build the app for the simulator |
+| `make build` | The above, then build the app for the simulator |
+| `make build-dev` | Build the app for the simulator, without rebuilding web assets |
 | `make dev` | Build once, then run the hot-reload loop against the Vite dev server |
 | `make clean` | Remove all generated artifacts |
 

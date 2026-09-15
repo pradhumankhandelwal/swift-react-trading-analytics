@@ -2,8 +2,6 @@
 #
 #   make run    build everything and launch in the iOS Simulator
 #   make dev    hot-reload loop: Vite dev server + app pointed at it
-#
-# Setup once: brew install xcodegen
 
 SCHEME      := TradingAnalytics
 PROJECT     := TradingAnalytics.xcodeproj
@@ -15,32 +13,15 @@ DEV_PORT    ?= 5173
 DEV_URL     ?= http://localhost:$(DEV_PORT)
 SIM_NAME    ?=
 
-.PHONY: all deps web-build gen gen-dev build build-dev run dev logs clean
+.PHONY: all web-build build build-dev run dev logs clean
 
 all: run
 
-## Install web dependencies. npm ci needs a lockfile, which a fresh checkout may not have.
-deps:
-	if [ -f web/package-lock.json ]; then npm --prefix web ci; else npm --prefix web install; fi
-
 ## Build the React app and copy it into the app bundle's resources.
-web-build: deps
+web-build:
 	npm --prefix web run build
 	mkdir -p $(WEB_DEST)
 	rsync -a --delete web/dist/ $(WEB_DEST)/
-
-# `make dev` does not need fresh bundled assets — the page comes from the dev server —
-# but the folder reference in project.yml must exist before xcodegen runs, so build the
-# web app once if it has never been built.
-$(WEB_DEST):
-	$(MAKE) web-build
-
-## Generate the Xcode project from project.yml.
-gen: web-build
-	xcodegen generate
-
-gen-dev: | $(WEB_DEST)
-	xcodegen generate
 
 # Shared by `build` and `build-dev`; the only difference is whether the web assets
 # were just rebuilt.
@@ -54,10 +35,10 @@ define xcodebuild_debug
 		build
 endef
 
-build: gen
+build: web-build
 	$(xcodebuild_debug)
 
-build-dev: gen-dev
+build-dev:
 	$(xcodebuild_debug)
 
 # Resolves a simulator UDID into $$udid. The device name is looked up at run time; do not
@@ -72,7 +53,7 @@ define resolve_sim
 	fi; \
 	echo "simulator: $$udid"; \
 	xcrun simctl boot "$$udid" 2>/dev/null || true; \
-	open -a Simulator; \
+	open -b com.apple.dt.Devices 2>/dev/null || open -a Simulator 2>/dev/null || true; \
 	xcrun simctl install "$$udid" "$(APP)"; \
 	xcrun simctl terminate "$$udid" $(BUNDLE_ID) 2>/dev/null || true
 endef

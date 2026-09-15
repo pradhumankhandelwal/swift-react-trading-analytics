@@ -86,6 +86,13 @@ extension WebViewCoordinator: WKNavigationDelegate {
         loadError = nil
     }
 
+    // Clear the spinner as soon as the page starts painting. Waiting for `didFinish`
+    // (the web `load` event) blocks on the embedded TradingView widget and every
+    // iframe/font/canvas resource it pulls, which is 20-30s in the Simulator.
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        isLoading = false
+    }
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         isLoading = false
     }

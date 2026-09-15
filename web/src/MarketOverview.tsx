@@ -15,7 +15,7 @@ declare global {
 const SYMBOL_SECTORS = [
   {
     sectionName: 'Indices',
-    symbols: ['FOREXCOM:SPXUSD', 'FOREXCOM:NSXUSD', 'FOREXCOM:DJI', 'FOREXCOM:UKXGBP'],
+    symbols: ['FOREXCOM:SPXUSD', 'FOREXCOM:NSXUSD', 'FOREXCOM:DJI', 'FOREXCOM:UKXGBP', 'BITSTAMP:BTCUSD', 'BITSTAMP:ETHUSD', 'CRYPTO:XRPUSD'],
   },
   {
     sectionName: 'Stocks',
@@ -81,7 +81,6 @@ export default function MarketOverview() {
       <tv-market-overview
         ref={ref}
         symbol-sectors={JSON.stringify(SYMBOL_SECTORS)}
-        time-frame="YTD"
       />
     </section>
   )

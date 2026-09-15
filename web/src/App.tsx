@@ -29,31 +29,7 @@ export default function App() {
 
   return (
     <main className="app">
-      <h1>Hello World from React</h1>
-      <p className="subtitle">
-        Rendered in a WKWebView hosted by a native Swift app.
-      </p>
-
-      <p className={`badge ${native ? 'badge-native' : 'badge-browser'}`}>
-        {native ? 'native bridge detected' : 'browser (no native bridge)'}
-      </p>
-
-      <button onClick={askNative} disabled={!native || busy}>
-        {busy ? 'Asking Swift…' : info ? 'Refresh device info' : 'Ask Swift for device info'}
-      </button>
-
-      {info && (
-        <dl className="info">
-          <dt>Model</dt>
-          <dd>{info.model}</dd>
-          <dt>System</dt>
-          <dd>
-            {info.systemName} {info.systemVersion}
-          </dd>
-          <dt>App version</dt>
-          <dd>{info.appVersion}</dd>
-        </dl>
-      )}
+      <h1>Watchlist</h1>
 
       {error && <p className="error">{error}</p>}
 

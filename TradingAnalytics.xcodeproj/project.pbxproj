@@ -19,7 +19,7 @@
 /* Begin PBXFileReference section */
 		324992E7C06CBA9C97E0FFC4 /* NativeBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeBridge.swift; sourceTree = "<group>"; };
 		51FD411AAC51882E34FF41E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		59B2B46602B0071089B0EEEC /* TradingAnalytics.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TradingAnalytics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		59B2B46602B0071089B0EEEC /* TradingAnalytics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TradingAnalytics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C4F9A37D6E1EA16925B58F /* WebViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewCoordinator.swift; sourceTree = "<group>"; };
 		B3EAA27F2DA7D6605CECA8AF /* TradingAnalyticsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingAnalyticsApp.swift; sourceTree = "<group>"; };
 		D47A2F9AE134D211C2C6A8A6 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = ios/Resources/web; sourceTree = SOURCE_ROOT; };
@@ -103,8 +103,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = CA57B2D6DB900EEAB5BFDA2E /* Build configuration list for PBXProject "TradingAnalytics" */;
 			developmentRegion = en;
@@ -159,6 +157,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9N6785LWN8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ios/Generated/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -298,6 +297,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9N6785LWN8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = ios/Generated/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
