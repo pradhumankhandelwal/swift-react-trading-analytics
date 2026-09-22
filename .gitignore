@@ -1,3 +1,28 @@
+# JavaScript / React
+node_modules/
+web/node_modules/
+web/dist/
+.vite/
+*.tsbuildinfo
+
+# Swift / Xcode
+build/
+ios/Resources/web
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Claude + agent skills
+.agents/
+.claude/
+
+# macOS
+.DS_Store
+
+# IDEs and editors
+.idea/
+.vscode/
+
 # Logs
 logs
 *.log
@@ -36,9 +61,13 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
+build
+ios/Resources/web
+web/dist
 
 # Dependency directories
 node_modules/
+web/node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -136,8 +165,3 @@ dist
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
-# Vite files
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
-.vite/
