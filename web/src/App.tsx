@@ -1,25 +1,20 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getDeviceInfo, isNative, type DeviceInfo } from './native'
-import MarketOverview from './MarketOverview'
+import { isNative} from './native'
+import MarketOverview from './screens/MarketOverview'
+import IndicatorsView from './screens/IndicatorsView'
+import BottomNav from './nav/BottomNav'
+import type { View } from './nav/types'
 
 export default function App() {
-  const [info, setInfo] = useState<DeviceInfo | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  const [view, setView] = useState<View>('watchlist')
 
   const native = isNative()
 
   const askNative = useCallback(async function askNative() {
     setBusy(true)
     setError(null)
-    try {
-      setInfo(await getDeviceInfo())
-    } catch (e) {
-      setInfo(null)
-      setError(e instanceof Error ? e.message : String(e))
-    } finally {
-      setBusy(false)
-    }
   }, [])
 
   // Populate on first render so the bridge round trip is visible without a tap.
@@ -28,12 +23,20 @@ export default function App() {
   }, [native, askNative])
 
   return (
-    <main className="app">
-      <h1>Watchlist</h1>
+    <>
+      <main className="app">
+        {view === 'watchlist' && (
+          <>
+            <h1>Watchlist</h1>
+            {error && <p className="error">{error}</p>}
+            <MarketOverview />
+          </>
+        )}
 
-      {error && <p className="error">{error}</p>}
+        {view === 'indicators' && <IndicatorsView />}
+      </main>
 
-      <MarketOverview />
-    </main>
+      <BottomNav active={view} onChange={setView} />
+    </>
   )
 }

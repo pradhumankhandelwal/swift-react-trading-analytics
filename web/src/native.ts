@@ -6,13 +6,6 @@
 // Outside the native app (plain `npm run dev` in a desktop browser) the bridge is
 // absent, so calls fall back to a stub so the React app stays runnable standalone.
 
-export interface DeviceInfo {
-  model: string
-  systemName: string
-  systemVersion: string
-  appVersion: string
-}
-
 interface BridgeResponse<T> {
   ok: boolean
   result?: T
@@ -69,10 +62,6 @@ export function callNative<T>(action: string, payload: unknown = {}): Promise<T>
 
     handler.postMessage({ id, action, payload })
   })
-}
-
-export function getDeviceInfo(): Promise<DeviceInfo> {
-  return callNative<DeviceInfo>('getDeviceInfo')
 }
 
 export function nativeLog(message: string): Promise<void> {
